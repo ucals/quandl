@@ -72,7 +72,7 @@ def criteria_defensive_investor(ticker_or_list, relax_current_ratio=False, verbo
             continue
 
         # Size criteria
-        size_criteria = data['revenueusd'].values[-1] > 100000000
+        size_criteria = data['revenueusd'].values[-1] > 2000000000 #100000000
         if return_list_five and not size_criteria:  # If is just to return the list of companies passing first 5 criteria, and failed, goes to next iteration
             continue
 
@@ -161,7 +161,7 @@ def criteria_defensive_investor(ticker_or_list, relax_current_ratio=False, verbo
 
         if verbose:
             print('- Size criteria: \t\t' + str(size_criteria) +
-                  '\tRevenues of $' + humanize.intword(data['revenueusd'].values[-1]) + ' (threshold is $100 million)')
+                  '\tRevenues of $' + humanize.intword(data['revenueusd'].values[-1]) + ' (threshold is $2 billion)')
             print('- Financial condition criteria: ' + str(financial_condition_criteria) +
                   '\tCurrent ratio of %1.2f' % current_ratio + ' (threshold is 2.0)')
             print('- Earnings stability criteria: \t' + str(earnings_stability_criteria) +
@@ -199,7 +199,7 @@ def analysis(df):
 
     cdi = len(df[df['full_criteria'] == True]['ticker'].tolist())
 
-    print(f'{c1:4d} companies passing size criteria of minimum $100 million revenues')
+    print(f'{c1:4d} companies passing size criteria of minimum $2 billion revenues')
     print(f'{c2:4d} companies passing financial condition criteria of minimum 2 current ratio')
     print(f'{c3:4d} companies passing earnings stability criteria of positive earnings in past 10 years')
     print(f'{c4:4d} companies passing dividend record criteria of uninterrupted payments in past 20 years')
@@ -248,7 +248,7 @@ def criteria_defensive_investor_list(ticker_or_list, all_data=None, relax_curren
 
     # Get all data at once
     if all_data is None:
-        fname = os.path.join(os.getcwd(), 'data_defensive', 'sf1.csv')
+        fname = os.path.join(os.getcwd(), 'data_defensive', 'defensive1_fundamentalsdata_20081231_20181231.csv')
         df_all = pd.read_csv(fname, parse_dates=['calendardate', 'datekey'])
     else:
         df_all = all_data
@@ -263,7 +263,7 @@ def criteria_defensive_investor_list(ticker_or_list, all_data=None, relax_curren
             continue
 
         # Size criteria
-        size_criteria = data['revenueusd'].values[-1] > 100000000
+        size_criteria = data['revenueusd'].values[-1] > 2000000000 #100000000
         if not size_criteria:  # If is just to return the list of companies passing first 5 criteria, and failed, goes to next iteration
             continue
 

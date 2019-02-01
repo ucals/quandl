@@ -14,7 +14,7 @@ def get_djia_symbols():
 
 def get_sp500_symbols():
     data = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
-    table = data[1]
+    table = data[0]
     return table['Symbol'].tolist()
 
 
